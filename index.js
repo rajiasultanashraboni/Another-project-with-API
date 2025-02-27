@@ -79,7 +79,7 @@ const displayAllPets = (pets)=>{
                     <hr class="my-2">
 
                     <div class="flex items-center justify-between">
-                        <button class="btn"><img src="https://img.icons8.com/?size=24&id=82788&format=png" alt=""></button>
+                        <button onclick="handleLikedButton('${image}')" class="btn"><img src="https://img.icons8.com/?size=24&id=82788&format=png" alt=""></button>
                         <button class="btn">Adopt</button>
                         <button class="btn">Details</button>
                     </div>

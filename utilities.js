@@ -11,6 +11,8 @@ const loaderSpinner=(show)=>{
     }
 }
 
+// remove active button 
+
 const removeActiveClass = ()=>{
     const removeallButtons = document.querySelectorAll(".category-btn");
     console.log(removeallButtons)
@@ -20,10 +22,22 @@ const removeActiveClass = ()=>{
        
     }
 }
-
+// active all button 
 const addActiveClass = (category)=>{
     const activeButtons = document.getElementById(`btn-${category}`);
     console.log(activeButtons)
     activeButtons.classList.remove('rounded-xl');
     activeButtons.classList.add('rounded-full', 'border-teal-800', 'bg-emerald-100')
+}
+
+//handle like button
+
+const handleLikedButton = (image)=>{
+    const imageContainer = document.getElementById('Liked-button')
+    // console.log(image)
+    const div = document.createElement('div')
+    div.innerHTML=`
+        <img class="rounded-lg" src="${image}"/>
+    `
+    imageContainer.appendChild(div)
 }
