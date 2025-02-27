@@ -12,14 +12,21 @@ const loadAllPets = async()=>{
     displayAllPets(data.pets)
 }
 
-const displayAllCategories=(category)=>{
-    category.forEach(element => {
+const loadAllPetsByCategory=async(category)=>{
+    console.log(category)
+    const response = await fetch(`https://openapi.programming-hero.com/api/peddy/category/${category}`);
+    const data = await response.json()
+    displayAllPets(data.data)
+}
+
+const displayAllCategories=(categories)=>{
+    categories.forEach(element => {
         // console.log(element)
         const {category,category_icon} = element
         const categoryContainer = document.getElementById('button-container');
         const div = document.createElement('div')
         div.innerHTML = `
-            <button class="flex items-center gap-4 border rounded-xl px-4 py-2">
+            <button onclick="loadAllPetsByCategory('${category}')" class="flex items-center gap-4 border rounded-xl px-4 py-2">
             <img class = "w-10" src="${category_icon}" alt="">
             <p>${category}</p>
         </button>
@@ -32,12 +39,13 @@ const displayAllCategories=(category)=>{
 const displayAllPets = (pets)=>{
     
    
-    const cardContainer = document.getElementById('card-container')
+    const cardContainer = document.getElementById('card-container');
+    cardContainer.innerHTML=""
     pets.forEach(pet => {
         // console.log(pet)
         const {breed,category,date_of_birth,price,image,gender,pet_name
         }=pet;
-        console.log(pet)
+        
         const div = document.createElement('div');
         div.classList.add("border", "p-2", "rounded-lg");
         div.innerHTML=`
@@ -51,7 +59,9 @@ const displayAllPets = (pets)=>{
                         <p>Birth:${date_of_birth?date_of_birth:"not available"}</p>
                         <p>Gender: ${gender?gender:"not available"}</p>
                         <p>Price: ${price?price:"not available"}</p>
+                        <p>category: ${category?category:"not available"}</p>
                     </div>
+                    <hr class="my-2">
 
                     <div class="flex items-center justify-between">
                         <button class="btn"><img src="https://img.icons8.com/?size=24&id=82788&format=png" alt=""></button>
