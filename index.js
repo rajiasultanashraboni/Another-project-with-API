@@ -7,16 +7,31 @@ const loadCategories = async ()=>{
 }
 
 const loadAllPets = async()=>{
+    loaderSpinner(true)
     const response = await fetch(' https://openapi.programming-hero.com/api/peddy/pets');
     const data = await response.json()
-    displayAllPets(data.pets)
+    setTimeout(() => {
+        displayAllPets(data.pets)
+        loaderSpinner(false)
+    }, 2000);
+    
 }
 
 const loadAllPetsByCategory=async(category)=>{
-    console.log(category)
+    //remove active class
+    removeActiveClass()
+    //add active class
+    addActiveClass(category)
+    //spinner
+    loaderSpinner(true)
+    // console.log(category)
     const response = await fetch(`https://openapi.programming-hero.com/api/peddy/category/${category}`);
     const data = await response.json()
-    displayAllPets(data.data)
+    setTimeout(() => {
+        displayAllPets(data.data)
+        loaderSpinner(false)
+    }, 2000);
+    
 }
 
 const displayAllCategories=(categories)=>{
@@ -26,7 +41,7 @@ const displayAllCategories=(categories)=>{
         const categoryContainer = document.getElementById('button-container');
         const div = document.createElement('div')
         div.innerHTML = `
-            <button onclick="loadAllPetsByCategory('${category}')" class="flex items-center gap-4 border rounded-xl px-4 py-2">
+            <button id="btn-${category}" onclick="loadAllPetsByCategory('${category}')" class="flex items-center gap-4 category-btn border rounded-xl px-4 py-2">
             <img class = "w-10" src="${category_icon}" alt="">
             <p>${category}</p>
         </button>
@@ -40,7 +55,7 @@ const displayAllPets = (pets)=>{
     
    
     const cardContainer = document.getElementById('card-container');
-    cardContainer.innerHTML=""
+    
     pets.forEach(pet => {
         // console.log(pet)
         const {breed,category,date_of_birth,price,image,gender,pet_name
