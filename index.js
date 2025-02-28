@@ -82,7 +82,7 @@ const displayAllPets = (pets)=>{
 
                     <div class="flex items-center justify-between">
                         <button onclick="handleLikedButton('${image}')" class="btn"><img src="https://img.icons8.com/?size=24&id=82788&format=png" alt=""></button>
-                        <button class="btn">Adopt</button>
+                        <button onclick="adoptedModal(this)" class="btn">Adopt</button>
                         <button class="btn">Details</button>
                     </div>
                 
@@ -92,6 +92,29 @@ const displayAllPets = (pets)=>{
         `
         cardContainer.appendChild(div)
     });
+}
+
+
+// adopted button functionality
+
+const adoptedModal=(event)=>{
+    // console.log(event)
+    let count = 3
+    const countContainer = document.getElementById('countdown-container');
+    countContainer.innerText= count;
+    my_modal_5.showModal()
+    const interval = setInterval(()=>{
+        count--
+        if(count !==0)countContainer.innerText= count;
+        if(count<1){
+            clearInterval(interval)
+            my_modal_5.close()
+            event.textContent="Adopted"
+            event.disabled=true;
+        }
+    },1000)
+    
+
 }
 
 loadCategories()
