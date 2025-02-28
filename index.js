@@ -12,6 +12,7 @@ const loadAllPets = async()=>{
     const data = await response.json()
     setTimeout(() => {
         displayAllPets(data.pets)
+        storedPetsdata=data.pets
         loaderSpinner(false)
     }, 2000);
     
@@ -29,8 +30,9 @@ const loadAllPetsByCategory=async(category)=>{
     const data = await response.json()
     setTimeout(() => {
         displayAllPets(data.data)
+        storedPetsdata=data.data
         loaderSpinner(false)
-    }, 2000);
+    }, 1000);
     
 }
 

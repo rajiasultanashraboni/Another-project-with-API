@@ -1,3 +1,6 @@
+// save all pets data for sort button 
+let storedPetsdata=[];
+// spinner 
 const loaderSpinner=(show)=>{
     const spinner = document.getElementById('loader');
     
@@ -40,4 +43,16 @@ const handleLikedButton = (image)=>{
         <img class="rounded-lg" src="${image}"/>
     `
     imageContainer.appendChild(div)
+}
+
+// sort button with descending order 
+
+const sortButton=()=>{
+    // console.log(storedPetsdata)
+    loaderSpinner(true)
+    const sortedData = storedPetsdata.sort((a,b)=>b.price-a.price);
+    setTimeout(()=>{
+        displayAllPets(sortedData)
+        loaderSpinner(false)
+    },500)
 }
