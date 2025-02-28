@@ -57,6 +57,19 @@ const displayAllPets = (pets)=>{
     
    
     const cardContainer = document.getElementById('card-container');
+    if(pets.length ===0){
+        cardContainer.classList.remove('grid')
+        cardContainer.innerHTML=`
+            <div class="text-center">
+                <img class="mx-auto" src="./images/error.webp" alt="">
+                <p class="text-2xl font-bold">No Available content is here</p>
+            </div>
+        `
+        return
+    }
+    else{
+        cardContainer.classList.add('grid')
+    }
     
     pets.forEach(pet => {
         // console.log(pet)
