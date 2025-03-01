@@ -56,3 +56,6 @@ const sortButton=()=>{
         loaderSpinner(false)
     },500)
 }
+
+
+// deatilsbutton functionality 
