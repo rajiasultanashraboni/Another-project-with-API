@@ -36,11 +36,11 @@ const loadAllPetsByCategory=async(category)=>{
     
 }
 //pet details showing by clicked details
-const loadAllPetsdetails =async(id)=>{
-    const response = await fetch(' ');
-    const data = await response.json()
-    console.log(data)
-}
+const loadAllPetsDetails = async (id) => {
+    const response = await fetch(`https://openapi.programming-hero.com/api/peddy/pet/${id}`);
+    const data = await response.json();
+    console.log(data);
+};
 const displayAllCategories=(categories)=>{
     categories.forEach(element => {
         // console.log(element)
@@ -101,7 +101,7 @@ const displayAllPets = (pets)=>{
                     <div class="flex items-center justify-between">
                         <button onclick="handleLikedButton('${image}')" class="btn"><img src="https://img.icons8.com/?size=24&id=82788&format=png" alt=""></button>
                         <button onclick="adoptedModal(this)" class="btn">Adopt</button>
-                        <button class="btn">Details</button>
+                        <button onclick="loadAllPetsDetails('${petData.petId}')"  class="btn">Details</button>
                     </div>
                 
                 
@@ -137,3 +137,4 @@ const adoptedModal=(event)=>{
 
 loadCategories()
 loadAllPets()
+loadAllPetsDetails()
