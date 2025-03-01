@@ -35,7 +35,12 @@ const loadAllPetsByCategory=async(category)=>{
     }, 1000);
     
 }
-
+//pet details showing by clicked details
+const loadAllPetsdetails =async(id)=>{
+    const response = await fetch(' ');
+    const data = await response.json()
+    console.log(data)
+}
 const displayAllCategories=(categories)=>{
     categories.forEach(element => {
         // console.log(element)
