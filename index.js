@@ -39,7 +39,13 @@ const loadAllPetsByCategory=async(category)=>{
 const loadAllPetsDetails = async (id) => {
     const response = await fetch(`https://openapi.programming-hero.com/api/peddy/pet/${id}`);
     const data = await response.json();
-    console.log(data);
+    displayPetDetails(data.petData);
+};
+
+// display pet details 
+const displayPetDetails = (details) => {
+    console.log(details);
+     
 };
 const displayAllCategories=(categories)=>{
     categories.forEach(element => {
@@ -101,7 +107,7 @@ const displayAllPets = (pets)=>{
                     <div class="flex items-center justify-between">
                         <button onclick="handleLikedButton('${image}')" class="btn"><img src="https://img.icons8.com/?size=24&id=82788&format=png" alt=""></button>
                         <button onclick="adoptedModal(this)" class="btn">Adopt</button>
-                        <button onclick="loadAllPetsDetails('${petData.petId}')"  class="btn">Details</button>
+                        <button onclick="loadAllPetsDetails('${pet.petId}')"  class="btn">Details</button>
                     </div>
                 
                 
