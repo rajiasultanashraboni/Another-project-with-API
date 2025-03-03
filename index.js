@@ -45,7 +45,25 @@ const loadAllPetsDetails = async (id) => {
 // display pet details 
 const displayPetDetails = (details) => {
     console.log(details);
-     
+    const detailsContainer = document.getElementById('details-container');
+    detailsContainer.innerHTML = `
+        <img class="w-full h-60" src="${details.image}" alt="">
+        <p class="text-2xl font-bold">${details.pet_name}</p>
+        <div class="flex gap-6 my-2">
+            <div>
+                <p>Breed: ${details.breed ? details.breed : "Not available"}</p>
+                <p>Birth: ${details.date_of_birth ? details.date_of_birth : "Not available"}</p>
+                <p>Gender: ${details.gender ? details.gender : "Not available"}</p>
+            </div>
+            <div>
+                <p>Price: ${details.price ? details.price : "Not available"}</p>
+                <p>Category: ${details.category ? details.category : "Not available"}</p>
+            </div>
+        </div>
+        <h1 class="text-3xl font-bold">Details Information</h1>
+        <p class="my-2">${details.pet_details}</p>
+    `;
+    document.getElementById("details_modal").showModal();
 };
 const displayAllCategories=(categories)=>{
     categories.forEach(element => {
@@ -126,13 +144,14 @@ const adoptedModal=(event)=>{
     let count = 3
     const countContainer = document.getElementById('countdown-container');
     countContainer.innerText= count;
-    my_modal_5.showModal()
+    const adoptModal = document.getElementById("adopt_modal"); 
+    adoptModal.showModal();
     const interval = setInterval(()=>{
         count--
         if(count !==0)countContainer.innerText= count;
         if(count<1){
             clearInterval(interval)
-            my_modal_5.close()
+            adoptModal.close()
             event.textContent="Adopted"
             event.disabled=true;
         }
@@ -143,4 +162,3 @@ const adoptedModal=(event)=>{
 
 loadCategories()
 loadAllPets()
-loadAllPetsDetails()
